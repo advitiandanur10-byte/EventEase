@@ -14,7 +14,7 @@ function AttendeeList({ eventId, token }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/registrations/event/${eventId}/attendees`,
+        `https://eventease-backend-r9zg.onrender.com/api/registrations/event/${eventId}/attendees`,
         {
           headers: {
             Authorization: `Bearer ${token}`

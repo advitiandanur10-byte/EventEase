@@ -37,7 +37,7 @@ function App() {
   const fetchEvents = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/events"
+        "https://eventease-backend-r9zg.onrender.com/api/events"
       );
 
       if (!response.ok) {
@@ -79,7 +79,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/events",
+        "https://eventease-backend-r9zg.onrender.com/api/events",
         {
           method: "POST",
           headers: {
@@ -125,7 +125,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/registrations",
+        "https://eventease-backend-r9zg.onrender.com/api/registrations",
         {
           method: "POST",
           headers: {
