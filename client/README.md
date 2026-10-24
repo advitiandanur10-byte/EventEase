@@ -1,16 +1,88 @@
-# React + Vite
+1.EventEase — Event Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EventEase is a full-stack web application that helps users discover events, create events, and register for workshops. Organizers can manage events and view attendee information.
 
-Currently, two official plugins are available:
+2.Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Frontend:https://event-ease-henna.vercel.app
+- GitHub Repository:https://github.com/advitiandanur10-byte/EventEase
+- Backend:https://eventease-backend-r9zg.onrender.com
 
-## React Compiler
+3.Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse upcoming events.
+- Create and manage events.
+- User registration and login.
+- Workshop registration.
+- Organizer and attendee functionality.
+- Persistent event data using MongoDB.
 
-## Expanding the ESLint configuration
+4.Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend
+- React
+- Vite
+- JavaScript
+- CSS
+
+Backend
+- Node.js
+- Express.js
+- REST APIs
+- JWT authentication
+
+Database
+- MongoDB Atlas
+- Mongoose
+
+Deployment and Version Control
+- Git and GitHub
+- Vercel for the frontend
+- Render for the backend
+
+
+ Run Locally
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/advitiandanur10-byte/EventEase.git
+cd EventEase
+```
+
+ 2. Start the backend
+
+```bash
+cd server
+npm install
+node server.js
+```
+
+Configure the required environment variables in `server/.env` before starting the backend. Never commit real credentials or secrets.
+
+ 3. Start the frontend
+
+Open a second terminal:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite in your browser.
+5.Environment Configuration
+
+Keep database connection strings, JWT secrets, and other sensitive credentials in the backend environment configuration. Do not publish them in GitHub.
+
+6.Future Improvements
+
+- Event search and category filters.
+- Improved mobile responsiveness.
+- Event reminders and email notifications.
+- Organizer analytics and attendee management.
+- Automated testing and improved error handling.
+
+Author
+
+Developed as an engineering project to practise full-stack web development, API integration, authentication, and deployment.
