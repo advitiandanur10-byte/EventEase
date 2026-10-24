@@ -8,18 +8,16 @@ const { protect } = require("../middleware/authMiddleware");
 
 // Register for an event
 router.post("/", protect, async (req, res) => {
+  let seatReserved = false;
+  let eventId;
+
   try {
-    const { eventId } = req.body;
+    eventId = req.body.eventId;
+    const userId = req.user.id;
 
     if (!eventId) {
       return res.status(400).json({
         message: "Event ID is required"
-      });
-    }
-
-    if (!req.user.id) {
-      return res.status(401).json({
-        message: "Invalid user token"
       });
     }
 
@@ -29,35 +27,56 @@ router.post("/", protect, async (req, res) => {
       });
     }
 
-    const event = await Event.findById(eventId);
+    // Atomically reserve a seat only if capacity remains
+    const event = await Event.findOneAndUpdate(
+      {
+        _id: eventId,
+        $expr: {
+          $lt: [
+            { $ifNull: ["$registeredCount", 0] },
+            { $ifNull: ["$seatLimit", 30] }
+          ]
+        }
+      },
+      {
+        $inc: { registeredCount: 1 }
+      },
+      { new: true }
+    );
 
     if (!event) {
-      return res.status(404).json({
-        message: "Event not found"
+      const exists = await Event.exists({ _id: eventId });
+
+      return res.status(exists ? 409 : 404).json({
+        message: exists
+          ? "Sorry, this event is full."
+          : "Event not found"
       });
     }
 
-    const existingRegistration = await Registration.findOne({
-      user: req.user.id,
-      event: eventId
-    });
+    seatReserved = true;
 
-    if (existingRegistration) {
-      return res.status(409).json({
-        message: "You are already registered for this event"
-      });
-    }
-
-    const registration = await Registration.create({
-      user: req.user.id,
+    // Create the registration
+    await Registration.create({
+      user: userId,
       event: eventId
     });
 
     res.status(201).json({
       message: "Successfully registered for the event",
-      registration
+      eventTitle: event.title,
+      registeredCount: event.registeredCount,
+      seatLimit: event.seatLimit
     });
   } catch (error) {
+    // Release the reserved seat if registration failed
+    if (seatReserved) {
+      await Event.updateOne(
+        { _id: eventId },
+        { $inc: { registeredCount: -1 } }
+      ).catch(console.error);
+    }
+
     if (error.code === 11000) {
       return res.status(409).json({
         message: "You are already registered for this event"
@@ -72,7 +91,7 @@ router.post("/", protect, async (req, res) => {
   }
 });
 
-// Get events the logged-in user has registered for
+// View the logged-in user's registrations
 router.get("/my", protect, async (req, res) => {
   try {
     const registrations = await Registration.find({
@@ -84,9 +103,38 @@ router.get("/my", protect, async (req, res) => {
     console.error("Fetch registrations error:", error);
 
     res.status(500).json({
-      message: "Error fetching your registrations"
+      message: "Error fetching registrations"
     });
   }
 });
 
+const { organizerOnly } = require("../middleware/authMiddleware");
+
+// Get attendees for an event (organizers only)
+router.get("/event/:eventId/attendees", protect, organizerOnly, async (req, res) => {
+  try {
+    const registrations = await Registration.find({
+      event: req.params.eventId
+    }).populate("user", "name email");
+
+    res.status(200).json({
+      count: registrations.length,
+      attendees: registrations.map((registration) => ({
+        name: registration.user.name,
+        email: registration.user.email,
+        registeredAt: registration.registeredAt
+      }))
+    });
+  } catch (error) {
+    console.error("Error fetching attendees:", error);
+
+    res.status(500).json({
+      message: "Error fetching attendee list"
+    });
+  }
+});
+
+
+
 module.exports = router;
+

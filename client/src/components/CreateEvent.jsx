@@ -38,6 +38,18 @@ function CreateEvent({ formData, handleChange, handleSubmit }) {
           required
         />
 
+        
+         <input
+            type="number"
+            name="seatLimit"
+            placeholder="Maximum number of seats"
+            min="1"
+            value={formData.seatLimit}
+            onChange={handleChange}
+            required
+          />
+
+
         <button type="submit">Create Event</button>
       </form>
     </section>

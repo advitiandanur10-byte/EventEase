@@ -103,7 +103,8 @@ function App() {
         title: "",
         description: "",
         date: "",
-        location: ""
+        location: "",
+        seatLimit: "30"
       });
 
       alert("Event created successfully!");
@@ -167,7 +168,8 @@ function App() {
       title: "",
       description: "",
       date: "",
-      location: ""
+      location: "",
+      seatLimit: "30"
     });
   };
 
