@@ -110,10 +110,11 @@ Open the local URL displayed in the terminal.
 - `POST /api/registrations` — register for an event
 - `GET /api/registrations/my` — view the current user's registrations
 
+
 ## Deployment
 
-Live website: To be added
-
-GitHub repository: To be added
+- **Live website:** https://event-ease-henna.vercel.app
+- **GitHub repository:** https://github.com/advitiandanur10-byte/EventEase
+- **Backend:** https://eventease-backend-r9zg.onrender.com
 
 
