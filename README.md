@@ -1,120 +1,90 @@
+# EventEase — Event Management Platform
 
-# EventEase — Workshop Registration System
+EventEase is a full-stack web application that helps users discover events, create events, and register for workshops. Organizers can manage events and view attendee information.
 
-EventEase is a full-stack web application for creating technical workshops and managing participant registrations.
+## Live Demo
+
+- **Frontend:** https://event-ease-henna.vercel.app
+- **GitHub Repository:** https://github.com/advitiandanur10-byte/EventEase
+- **Backend:** Add your public Render service URL here.
 
 ## Features
 
-- Create and display technical workshops.
-- User registration, login, and logout.
-- MongoDB database integration.
-- JWT-based authentication.
-- Participant registration for workshops.
-- Duplicate-registration prevention.
-- Organizer access controls.
+- Browse upcoming events.
+- Create and manage events.
+- User registration and login.
+- Workshop registration.
+- Organizer and attendee functionality.
+- Persistent event data using MongoDB.
 
-- Seat-limit management
-- Organizer attendee dashboard
-- Improved responsive design
-- Production deployment and testing
+## Technologies Used
 
+**Frontend**
+- React
+- Vite
+- JavaScript
+- CSS
 
-## Technology Stack
+**Backend**
+- Node.js
+- Express.js
+- REST APIs
+- JWT authentication
 
-- Frontend: React.js and Vite
-- Backend: Node.js and Express.js
-- Database: MongoDB Atlas
-- Authentication: JSON Web Tokens (JWT)
-- Password security: bcryptjs
-- API testing: Postman
-- Version control: Git and GitHub
+**Database**
+- MongoDB Atlas
+- Mongoose
 
-## Project Structure
+**Deployment and Version Control**
+- Git and GitHub
+- Vercel for the frontend
+- Render for the backend
 
-- `client/` — React frontend
-- `server/` — Express backend and API routes
-- `server/models/` — MongoDB models
-- `server/routes/` — API endpoints
-- `server/middleware/` — Authentication and authorization
-
-## Prerequisites
-
-- Node.js and npm
-- Git
-- A MongoDB Atlas database
-
-## Setup Instructions
+## Run Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd eventease
+git clone https://github.com/advitiandanur10-byte/EventEase.git
+cd EventEase
 ```
 
-### 2. Install frontend dependencies
-
-```bash
-cd client
-npm install
-```
-
-### 3. Install backend dependencies
-
-Open another terminal:
+### 2. Start the backend
 
 ```bash
 cd server
 npm install
-```
-
-### 4. Configure environment variables
-
-Create a `.env` file inside `server/`:
-
-```text
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_long_random_secret
-PORT=5000
-```
-
-Use your own credentials. Never commit `.env` to GitHub.
-
-### 5. Start the backend
-
-From the `server/` folder:
-
-```bash
 node server.js
 ```
 
-### 6. Start the frontend
+Configure the required environment variables in `server/.env` before starting the backend. Never commit real credentials or secrets.
 
-From the `client/` folder:
+### 3. Start the frontend
+
+Open a second terminal:
 
 ```bash
+cd client
+npm install
 npm run dev
 ```
 
-Open the local URL displayed in the terminal.
+Open the local URL printed by Vite in your browser.
 
-## API Overview
+## Environment Configuration
 
-- `GET /api/events` — retrieve events
-- `POST /api/events` — create an event
-- `GET /api/events/:id` — retrieve one event
-- `PUT /api/events/:id` — update an event
-- `DELETE /api/events/:id` — delete an event
-- `POST /api/auth/register` — register an account
-- `POST /api/auth/login` — log in
-- `POST /api/registrations` — register for an event
-- `GET /api/registrations/my` — view the current user's registrations
+Keep database connection strings, JWT secrets, and other sensitive credentials in the backend environment configuration. Do not publish them in GitHub.
 
+## Future Improvements
 
-## Deployment
+- Event search and category filters.
+- Improved mobile responsiveness.
+- Event reminders and email notifications.
+- Organizer analytics and attendee management.
+- Automated testing and improved error handling.
 
-- **Live website:** https://event-ease-henna.vercel.app
-- **GitHub repository:** https://github.com/advitiandanur10-byte/EventEase
-- **Backend:** https://eventease-backend-r9zg.onrender.com
+## Author
+
+Developed as an engineering project to practise full-stack web development, API integration, authentication, and deployment.
 
 
