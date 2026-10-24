@@ -6,7 +6,7 @@ EventEase is a full-stack web application that helps users discover events, crea
 
 - **Frontend:** https://event-ease-henna.vercel.app
 - **GitHub Repository:** https://github.com/advitiandanur10-byte/EventEase
-- **Backend:** Add your public Render service URL here.
+- **Backend:** https://eventease-backend-r9zg.onrender.com
 
 ## Features
 
